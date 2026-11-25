@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty</title>
+</head>
+<body>
+
+
+<h1>Rick and Morty</h1>
+
+<ul id="characterlist"></ul>
+
+<script>
+    let url = "https://rickandmortyapi.com/api/character";
+    let characterlist = document.getElementById("characterlist");
+ async function fetchCharacters() {
+       const response = await fetch(url);
+       console.log(response);
+
+       const data = await response.json();
+         console.log(data);
+
+data.results.forEach(item => {
+    console.log(item.name);
+    console.log(item.image);
+
+    characterlist.innerHTML += `<li><h2>${item.name}</h2>
+        <img src="${item.image}" alt="${item.name}">
+        <details>
+            <summary>Details</summary>
+            <p>Status: ${item.status}</p>
+            <p>Species: ${item.species}</p>
+            <p>Gender: ${item.gender}</p>
+            <p>Origin: ${item.origin.name}</p>
+        </details>
+         </li>`;
+});
+
+
+
+         
+  } 
+
+
+fetchCharacters();
+
+
+
+
+</script>
+
+
+    
+</body>
+</html>
